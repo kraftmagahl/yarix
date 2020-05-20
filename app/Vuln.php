@@ -6,13 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Vuln extends Model
 {
+
+    protected $table='webapp_vulns';
+
     /**
     * The attributes that are mass assignable.
     *
     * @var array
     */
    protected $fillable = [
-       'titolo ufficiale',
+       'Titolo_non_ufficiale',
+       'Titolo_ufficiale',
        'OWASP',
        'Gravità',
        'Descrizione',
@@ -26,6 +30,6 @@ class Vuln extends Model
     * @var array
     */
    protected $hidden = [
-     
+     'id',
    ];
 }

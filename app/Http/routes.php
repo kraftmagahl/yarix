@@ -16,5 +16,9 @@ Route::get('/', function () {
 });
 
 Route::auth();
-
+Route::resource('/search','VulnController');
 Route::get('/home', 'HomeController@index');
+Route::get('/index','VulnController@index');
+Route::get('/search','VulnController@search');
+Route::get('/show','VulnController@show');
+Route::get('/create','VulnController@create');
