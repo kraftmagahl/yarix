@@ -15,7 +15,7 @@
             <th>{{$vuln->Titolo_ufficiale}}</th>
             <th>{{$vuln->OWASP}}</th>
             <th>{{$vuln->Gravità}}</th>
-            <th><button><a href="{{url('/show')}}">Show</button>
+            <th><button><a href="{{url('/show/'.$vuln->id)}}">Show</button>
         </tr>
         @endforeach
     </table>

@@ -35,8 +35,9 @@ class VulnController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        return view('vulns.store');
+    {   
+        $vuln=Vuln::create($request->all());
+        return view('vulns.show',compact('vuln'));
     }
 
     /**
@@ -46,12 +47,14 @@ class VulnController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        return view('vulns.show',compact('id'));
+    {   $vuln=Vuln::findOrFail($id);
+        return view('vulns.show',compact('vuln'));
     }
 
-    public function search(){
-        return view('vulns.search');
+    public function search(Request $request,$id){
+        $vuln=Vuln::findOrFail($id);
+        dd($vuln->all());
+        //return view('vulns.search');
     }
 
     /**

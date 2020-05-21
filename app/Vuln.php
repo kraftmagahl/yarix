@@ -3,11 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Vuln extends Model
 {
-
-    protected $table='webapp_vulns';
+    protected $dates=['deleted_at'];
 
     /**
     * The attributes that are mass assignable.
@@ -15,7 +15,6 @@ class Vuln extends Model
     * @var array
     */
    protected $fillable = [
-       'Titolo_non_ufficiale',
        'Titolo_ufficiale',
        'OWASP',
        'Gravità',
@@ -30,6 +29,5 @@ class Vuln extends Model
     * @var array
     */
    protected $hidden = [
-     'id',
    ];
 }
