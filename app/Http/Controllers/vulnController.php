@@ -38,6 +38,9 @@ class VulnController extends Controller
     public function store(Request $request)
     {   
         $vuln=Vuln::create($request->all());
+        $user_name = Auth::user()->name;
+        $vuln->updated_by=$user_name;
+        $vuln->save();
         return view('vulns.show',compact('vuln'));
     }
 
@@ -60,6 +63,10 @@ class VulnController extends Controller
      */
     public function search(Request $request){
         $vulns=Vuln::where('Titolo_ufficiale', 'LIKE', '%' . $request->get('Titolo_ufficiale'). '%')->get();
+        $vulns1=Vuln::where('Descrizione', 'LIKE', '%' . $request->get('Titolo_ufficiale'). '%')->get();
+        $vulns2=Vuln::where('OWASP', 'LIKE', '%' . $request->get('Titolo_ufficiale'). '%')->get();
+        $vulns = collect($vulns1);
+        $vulns=collect($vulns2);
         return view('vulns.search',compact('vulns'));
     }
 
