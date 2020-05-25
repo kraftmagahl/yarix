@@ -21,5 +21,7 @@ Route::get('/home', 'HomeController@index');
 Route::get('/index','VulnController@index');
 Route::get('/search','VulnController@search')->name('search');
 Route::get('/show/{id}','VulnController@show');
+Route::get('/edit/{id}','VulnController@edit');
 Route::get('/create','VulnController@create');
 Route::post('/','VulnController@store')->name('store');
+Route::post('/{id}','VulnController@update')->name('update');

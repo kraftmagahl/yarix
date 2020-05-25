@@ -8,6 +8,7 @@
                 <th>OWASP</th>
                 <th>Gravità</th>
                 <th></th>
+                <th></th>
             </tr>
         </thead>
         @foreach($vulns as $vuln)
@@ -16,6 +17,7 @@
             <th>{{$vuln->OWASP}}</th>
             <th>{{$vuln->Gravità}}</th>
             <th><button><a href="{{url('/show/'.$vuln->id)}}">Show</button>
+            <th><button><a href="{{url('/edit/'.$vuln->id)}}">Edit</button>
         </tr>
         @endforeach
     </table>

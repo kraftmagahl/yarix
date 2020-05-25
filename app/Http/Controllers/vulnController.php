@@ -51,10 +51,9 @@ class VulnController extends Controller
         return view('vulns.show',compact('vuln'));
     }
 
-    public function search(Request $request,$id){
-        $vuln=Vuln::findOrFail($id);
-        dd($vuln->all());
-        //return view('vulns.search');
+    public function search(Request $request){
+        $vulns=Vuln::where('Titolo_ufficiale', 'LIKE', '%' . $request->get('Titolo_ufficiale'). '%')->get();
+        return view('vulns.search',compact('vulns'));
     }
 
     /**
@@ -64,8 +63,8 @@ class VulnController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        return view('vulns.edit',compact('id'));
+    {   $vuln=Vuln::findOrFail($id);
+        return view('vulns.edit',compact('vuln'));
     }
 
     /**
@@ -75,9 +74,11 @@ class VulnController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,$id)
     {
-        return view('vulns.update',compact('id'));
+        $vuln=Vuln::findOrFail($id);
+        $vuln->update($request->all());
+        return redirect('/home');
     }
 
 }
