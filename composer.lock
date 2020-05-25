@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8b1485987e7c5949da82435d403e52e8",
+    "content-hash": "32c614dc1f58e03bd50b841ffa5bc681",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -1982,6 +1982,57 @@
                 "dump"
             ],
             "time": "2016-07-26T08:03:56+00:00"
+        },
+        {
+            "name": "velitsol/userstamps",
+            "version": "v0.1.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hmshafeeq/userstamps.git",
+                "reference": "1a08e82895d8a3dde12c53ba326e8d59106c3465"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hmshafeeq/userstamps/zipball/1a08e82895d8a3dde12c53ba326e8d59106c3465",
+                "reference": "1a08e82895d8a3dde12c53ba326e8d59106c3465",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "5.*",
+                "php": ">=5.6.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "VelitSol\\Userstamps\\UserstampServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "VelitSol\\Userstamps\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Muhammad Shafeeq",
+                    "email": "hmshafeeq@gmail.com"
+                }
+            ],
+            "description": "A simple package to insert and load userstamps for a model automatically, it provides an eloquent trait to use in your models.",
+            "keywords": [
+                "created_by",
+                "eloquent",
+                "laravel",
+                "updated_by",
+                "userstamps"
+            ],
+            "time": "2020-01-20T18:53:53+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

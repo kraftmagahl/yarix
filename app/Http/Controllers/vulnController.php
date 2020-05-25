@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateVulnRequest;
 use Illuminate\Http\Request;
 use App\Vuln;
+use Illuminate\Support\Facades\Auth;
 
 class VulnController extends Controller
 {
@@ -51,6 +52,12 @@ class VulnController extends Controller
         return view('vulns.show',compact('vuln'));
     }
 
+      /**
+     * Search in DB for the specified entry.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function search(Request $request){
         $vulns=Vuln::where('Titolo_ufficiale', 'LIKE', '%' . $request->get('Titolo_ufficiale'). '%')->get();
         return view('vulns.search',compact('vulns'));
@@ -78,6 +85,9 @@ class VulnController extends Controller
     {
         $vuln=Vuln::findOrFail($id);
         $vuln->update($request->all());
+        $user_name = Auth::user()->name;
+        $vuln->updated_by=$user_name;
+        $vuln->save();
         return redirect('/home');
     }
 
