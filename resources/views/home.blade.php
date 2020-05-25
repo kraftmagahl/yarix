@@ -4,19 +4,26 @@
 <body>
 <div class="container">
     <div class="row">
-        <div class="col-md-10 col-md-offset-1">
+        <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">WebApp Database</div>
 
-                <div class="search-db">
-                    <form method='get' action='{{route("search")}}'>
+                <div class="panel-body">
+                    <form class="form-horizontal" method='get' action='{{route("search")}}'>
                         {{csrf_field()}}
-                        <input type='text' name='Titolo_ufficiale' placeholder="...Search" >
-                        <button type="submit"> Search!</button>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <input type='text' class="form-control" name='Titolo_ufficiale' placeholder="...Search" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <button type="submit" class="btn btn-primary">Search!</button>
+                                <button class="btn" ><a href="{{url('/create')}}"> Create!</button>
+                                <button  class="btn"><a href="{{ url('/index') }}">List</button>
+                            </div>
+                        </div>
                     </form>
-                    <button><a href="{{url('/create')}}"> Create!</button>
-                    <button ><a href="{{ url('/index') }}">List</button>
-                    
                 </div>
             </div>
         </div>

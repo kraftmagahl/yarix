@@ -65,8 +65,10 @@ class VulnController extends Controller
         $vulns=Vuln::where('Titolo_ufficiale', 'LIKE', '%' . $request->get('Titolo_ufficiale'). '%')->get();
         $vulns1=Vuln::where('Descrizione', 'LIKE', '%' . $request->get('Titolo_ufficiale'). '%')->get();
         $vulns2=Vuln::where('OWASP', 'LIKE', '%' . $request->get('Titolo_ufficiale'). '%')->get();
+        $vulns3=Vuln::where('Titolo_non_ufficiale', 'LIKE', '%' . $request->get('Titolo_ufficiale'). '%')->get();
         $vulns = collect($vulns1);
         $vulns=collect($vulns2);
+        $vulns=collect($vulns3);
         return view('vulns.search',compact('vulns'));
     }
 

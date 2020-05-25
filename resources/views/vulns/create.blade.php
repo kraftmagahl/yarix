@@ -9,10 +9,10 @@
         <input type="text" name="OWASP">
         <p>Scegli la Gravità:</p>
         <select name='Gravità'>
-            <option value='Critico'>Critico</option>
-            <option value='Alto'>Alto</option>
-            <option value='Medio'>Medio</option>
-            <option value='Basso'>Basso</option>
+            <option value='Critico'>CRITICO</option>
+            <option value='Alto'>ALTO</option>
+            <option value='Medio'>MEDIO</option>
+            <option value='Basso'>BASSO</option>
         </select>
         <label>Descrizione:</label><br>
         <textarea name="Descrizione">Enter Description...</textarea>
