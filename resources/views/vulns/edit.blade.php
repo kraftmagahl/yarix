@@ -1,25 +1,63 @@
 @extends('layouts.app')
 
 @section('content')
-<form method="post" action="/{{$vuln->id}}">
-        {{csrf_field()}}
-        <label> Titolo ufficiale: </label>
-        <input type="text" name="Titolo_ufficiale" value="{{$vuln->Titolo_ufficiale}}">
-        <label>OWASP:</label>
-        <input type="text" name="OWASP" value="{{$vuln->OWASP}}">
-        <p>Scegli la Gravità:</p>
-        <select name='Gravità' value="{{$vuln->Gravità}}">
-            <option value='Critico'>CRITICO</option>
-            <option value='Alto'>ALTO</option>
-            <option value='Medio'>MEDIO</option>
-            <option value='Basso'>BASSO</option>
-        </select>
-        <label>Descrizione:</label><br>
-        <textarea name="Descrizione">{{$vuln->Descrizione}}</textarea>
-        <label>Soluzione:</label><br>
-        <textarea name="Soluzione">{{$vuln->Soluzione}}</textarea>
-        <label>Proof of Concept(PoC): </label><br>
-        <textarea name="PoC">{{$vuln->PoC}}</textarea>
-        <button type='submit'>SALVA</button>
-    </form>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">WebApp Database</div>
+                <div class="panel-body">
+                    <form class="form-horizontal" form method="post" action="/{{$vuln->id}}">
+                        {{csrf_field()}}
+                        <div class="form-group">
+                            <label class="col-md-4 control-label"> TITOLO UFFICIALE: </label>
+                            <div class="col-md-6">
+                                <input class="form-control"  type="text" name="Titolo_ufficiale" value="{{$vuln->Titolo_ufficiale}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">OWASP:</label>
+                            <div class="col-md-6">
+                                <input class="form-control" value="{{$vuln->OWASP}}" type="text" name="OWASP">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">GRAVITA':</label>
+                            <div class="col-md-6">
+                                <select  class="form-control" name='Gravità'>
+                                    <option selected="selected">{{$vuln->Gravità}}</option>
+                                    <option value='Critico'>CRITICO</option>
+                                    <option value='Alto'>ALTO</option>
+                                    <option value='Medio'>MEDIO</option>
+                                    <option value='Basso'>BASSO</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">DESCRIZIONE:</label>
+                            <div class="col-md-6">
+                                <textarea rows="10" class="form-control" name="Descrizione" >{{$vuln->Descrizione}}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">SOLUZIONE:</label>
+                            <div class="col-md-6">
+                                <textarea rows="10"  class="form-control" name="Soluzione">{{$vuln->Soluzione}}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">PROOF OF CONCEPT(PoC): </label>
+                            <div class="col-md-6">
+                                <textarea rows="10"  class="form-control" name="PoC">{{$vuln->PoC}}</textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-md-offset-4">
+                            <button type="submit" class="btn btn-primary">SALVA</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection

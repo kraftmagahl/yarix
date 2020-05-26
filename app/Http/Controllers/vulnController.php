@@ -97,7 +97,7 @@ class VulnController extends Controller
         $user_name = Auth::user()->name;
         $vuln->updated_by=$user_name;
         $vuln->save();
-        return redirect('/home');
+        return view('vulns.show',compact('vuln'));
     }
 
 }
