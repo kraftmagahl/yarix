@@ -40,9 +40,21 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label class="col-md-4 control-label">ENGLISH DESCRIPTION:</label>
+                            <div class="col-md-6">
+                                <textarea rows="10" class="form-control" name="Descrizione_en" >{{$vuln->Descrizione_en}}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="col-md-4 control-label">SOLUZIONE:</label>
                             <div class="col-md-6">
                                 <textarea rows="10"  class="form-control" name="Soluzione">{{$vuln->Soluzione}}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">ENGLISH SOLUTION:</label>
+                            <div class="col-md-6">
+                                <textarea rows="10"  class="form-control" name="Soluzione_en">{{$vuln->Soluzione_en}}</textarea>
                             </div>
                         </div>
                         <div class="form-group">

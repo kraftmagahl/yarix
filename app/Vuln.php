@@ -21,6 +21,8 @@ class Vuln extends Model
        'Descrizione',
        'Soluzione',
        'PoC',
+       'Descrizione_en',
+       'Soluzione_en',
    ];
 
    /**

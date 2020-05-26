@@ -39,9 +39,21 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label class="col-md-4 control-label"> ENGLISH DESCRIPTION:</label>
+                            <div class="col-md-6">
+                                <textarea  class="form-control" name="Descrizione_en">Enter Description...</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="col-md-4 control-label">SOLUZIONE:</label>
                             <div class="col-md-6">
                                 <textarea  class="form-control" name="Soluzione">Enter Solution...</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label"> ENGLISH SOLUTION:</label>
+                            <div class="col-md-6">
+                                <textarea  class="form-control" name="Soluzione_en">Enter Solution...</textarea>
                             </div>
                         </div>
                         <div class="form-group">
