@@ -20,12 +20,13 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group"style='float: left; padding: 5px;'>
                                 <div class="col-md-10">
-                                    <button type="submit" class="btn btn-primary">INVIA!</button>
+                                    <button type="submit" class="btn btn-primary" >INVIA!</button>
                                 </div>
                             </div>
                         </form>
+                    <div style='float: left; padding: 5px;'>
                         <form class="form-horizontal" method="post" action='{{route("category")}}'>
                             {{csrf_field()}}
                             @foreach($categories as $category)
@@ -33,6 +34,7 @@
                             @endforeach
                             <button type="submit" class="btn" href="{{url('/new_category')}}">Create New Repository!</button>
                         </form>
+                    </div>
                     </div>
                 </div>
             </div>

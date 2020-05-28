@@ -18,30 +18,34 @@
                                     <input type='text' class="form-control" name='Titolo_ufficiale' placeholder="...Search" >
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" style='float: left; padding-left: 5px;'>
                                 <div class="col-md-10">
                                     <button type="submit" class="btn btn-primary">Search!</button>
                                 </div>
                             </div>
                         </form> 
-                        <form class="form-horizontal" method="get" action='{{route("index")}}'>
-                            {{csrf_field()}}
-                            <input type='hidden' name='Category' value='{{$input}}'>
-                            <div class="form-group">
-                                <div class="col-md-10">
-                                    <button type="submit" class="btn" href="{{ url('/index') }}">List</button>
+                        <div style='float: right; padding-right: 5px;'>
+                            <form class="form-horizontal" method="get" action='{{route("index")}}'>
+                                {{csrf_field()}}
+                                <input type='hidden' name='Category' value='{{$input}}'>
+                                <div class="form-group">
+                                    <div class="col-md-10">
+                                        <button type="submit" class="btn" href="{{ url('/index') }}">List</button>
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
-                        <form class="form-horizontal" method="get" action='{{route("create")}}'>
-                            {{csrf_field()}}
-                            <input type='hidden' name='Category' value='{{$input}}'>
-                            <div class="form-group">
-                                <div class="col-md-10">
-                                    <button type="submit" class="btn" href="{{ url('/create') }}">Create!</button>
+                            </form>
+                        </div>
+                        <div style='float: right; padding-right: 5px;'>
+                            <form class="form-horizontal" method="get" action='{{route("create")}}'>
+                                {{csrf_field()}}
+                                <input type='hidden' name='Category' value='{{$input}}'>
+                                <div class="form-group">
+                                    <div class="col-md-10">
+                                        <button type="submit" class="btn" href="{{ url('/create') }}">Create!</button>
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
