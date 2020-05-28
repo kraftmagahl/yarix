@@ -12,8 +12,8 @@
                         @foreach($categories as $category)
                             <input type='hidden' name='categories[]' value='{{$category}}'>
                         @endforeach
-                        <div class="form-group">
                             <label class="col-md-4 control-label"> NOME TABELLA: </label>
+                        <div class="form-group">
                             <div class="col-md-6">
                                 <input class="form-control"  type="text" name="tablename">
                             </div>

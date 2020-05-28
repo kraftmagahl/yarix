@@ -43,6 +43,14 @@
                             </tr>    
                     </table>
                     <button class="btn btn-primary"  onclick="copyToClipboard('#gravità')">Copy</button>
+                    <div class="col-md-10">
+                        <form class="form-horizontal" method="get" action='{{route("home")}}'>
+                                {{csrf_field()}}
+                                <input type='hidden' name='Category' value='{{$category}}'>
+                                <button class="btn" type="submit" href="/home">Vai a Home</button>
+                        </form>
+                    </div>
+
                     <script>
                         function copyToClipboard(element) {
                             var $temp = $("<input>");

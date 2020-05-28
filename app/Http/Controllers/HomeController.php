@@ -31,7 +31,16 @@ class HomeController extends Controller
     }
 
     public function choose(){
-        $categories=['webapp_vuln'];
+            $dir = 'C:\Users\Kraftmagahl\Desktop\code\login\app';
+            $files = scandir($dir);
+            $categories = array();
+            $namespace = 'App\\';
+            foreach($files as $file) {
+            //skip current and parent folder entries and non-php files
+                if ($file == '.' || $file == '..' || !preg_match('/\.php/', $file) || $file=='User.php') continue;
+                $model=trim($file,'.php');
+                array_push($categories,$model);
+            }
         return view('choose',compact('categories'));
     }
 }

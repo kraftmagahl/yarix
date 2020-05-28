@@ -44,10 +44,33 @@ class VulnController extends Controller
     public function store(Request $request)
     {   $category=$request->get('Category');
         $model="App\\".$category;
-        $vuln=$model::create($request->all());
+        $vuln = $model::create();
         $user_name = Auth::user()->name;
-        $vuln->updated_by=$user_name;
-        $vuln->save();
+        $vuln->fillable(array_merge($vuln->getFillable(),
+        [
+            'Titolo_non_ufficiale',
+            'Titolo_ufficiale',
+            'OWASP',
+            'Gravità',
+            'Descrizione',
+            'Soluzione',
+            'PoC',
+            'Descrizione_en',
+            'Soluzione_en',
+            'updated_by'
+
+            ]));
+        $vuln->fill([
+            'Titolo_ufficiale'=>$request->get('Titolo_ufficiale'),
+            'OWASP'=>$request->get('OWASP'),
+            'Gravità'=>$request->get('Gravità'),
+            'Descrizione'=>$request->get('Descrizione'),
+            'Soluzione'=>$request->get('Soluzione'),
+            'PoC'=>$request->get('PoC'),
+            'Descrizione_en'=>$request->get('Descrizione_en'),
+            'Soluzione_en'=>$request->get('Soluzione_en'),
+            'updated_by'=>$user_name
+        ])->save();
         return view('vulns.show',compact('vuln','category'));
     }
 
@@ -107,10 +130,32 @@ class VulnController extends Controller
         $category=$request->get('Category');
         $model="App\\".$category;
         $vuln=$model::findOrFail($id);
-        $vuln->update($request->all());
         $user_name = Auth::user()->name;
-        $vuln->updated_by=$user_name;
-        $vuln->save();
+        $vuln->fillable(array_merge($vuln->getFillable(),
+        [
+            'Titolo_non_ufficiale',
+            'Titolo_ufficiale',
+            'OWASP',
+            'Gravità',
+            'Descrizione',
+            'Soluzione',
+            'PoC',
+            'Descrizione_en',
+            'Soluzione_en',
+            'updated_by'
+
+            ]));
+        $vuln->fill([
+            'Titolo_ufficiale'=>$request->get('Titolo_ufficiale'),
+            'OWASP'=>$request->get('OWASP'),
+            'Gravità'=>$request->get('Gravità'),
+            'Descrizione'=>$request->get('Descrizione'),
+            'Soluzione'=>$request->get('Soluzione'),
+            'PoC'=>$request->get('PoC'),
+            'Descrizione_en'=>$request->get('Descrizione_en'),
+            'Soluzione_en'=>$request->get('Soluzione_en'),
+            'updated_by'=>$user_name
+        ])->save();
         return view('vulns.show',compact('vuln','category'));
     }
 

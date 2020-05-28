@@ -29,9 +29,9 @@ Route::get('/edit','VulnController@edit')->name('edit');
 Route::get('/create','VulnController@create')->name('create');
 Route::post('/','VulnController@store')->name('store');
 Route::post('/save', function(Request $request){
-    $tablename=$request->get('tablename');
+    $tablenames=$request->get('tablename');
     $newtableschema = array(
-        'tablename' => $tablename,
+        'tablename' => $tablenames,
         'colnames' => [
             'Titolo_non_ufficiale',
             'Titolo_ufficiale',
@@ -48,7 +48,6 @@ Route::post('/save', function(Request $request){
     );
 
     Schema::create($newtableschema['tablename'], function($table) use($newtableschema){
-    //Schema::create($tablename, function(Blueprint $table){
         $table->increments('id')->unique();
         foreach($newtableschema['colnames'] as $col){
             $table->text($col)->nullable();
@@ -56,7 +55,16 @@ Route::post('/save', function(Request $request){
         $table->timestamps();
     });
     $categories=$request->input('categories');
+    if(substr($tablenames, -1)=='s'){
+        $tablename=rtrim($tablenames,'s');
+    }else{
+        $tablename=$tablenames;
+    }
     array_push($categories,$tablename);
+
+    Artisan::call('make:model', [
+        'name' => $tablename,
+    ]);
     return view('choose',compact('categories'));
 })->name('save');
 
