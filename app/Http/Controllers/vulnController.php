@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateVulnRequest;
 use Illuminate\Http\Request;
-use App\Vuln;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+
 
 class VulnController extends Controller
 {
@@ -14,9 +17,12 @@ class VulnController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {   $vulns=Vuln::all();
-        return view('vulns.index',compact('vulns'));
+    public function index(Request $request)
+    { 
+        $category=$request->get('Category');
+        $model="App\\".$category;
+        $vulns=$model::all();
+        return view('vulns.index',compact('vulns','category'));
     }
 
     /**
@@ -24,9 +30,9 @@ class VulnController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        return view('vulns.create');
+    public function create(Request $request)
+    {   $category=$request->get('Category');
+        return view('vulns.create',compact('category'));
     }
 
     /**
@@ -36,12 +42,13 @@ class VulnController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
-        $vuln=Vuln::create($request->all());
+    {   $category=$request->get('Category');
+        $model="App\\".$category;
+        $vuln=$model::create($request->all());
         $user_name = Auth::user()->name;
         $vuln->updated_by=$user_name;
         $vuln->save();
-        return view('vulns.show',compact('vuln'));
+        return view('vulns.show',compact('vuln','category'));
     }
 
     /**
@@ -50,9 +57,11 @@ class VulnController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {   $vuln=Vuln::findOrFail($id);
-        return view('vulns.show',compact('vuln'));
+    public function show(Request $request)
+    {   $category=$request->get('Category');
+        $model="App\\".$category;
+        $vuln=$model::findOrFail($request->get('id'));
+        return view('vulns.show',compact('vuln','category'));
     }
 
       /**
@@ -62,13 +71,15 @@ class VulnController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function search(Request $request){
-        $vulns=Vuln::where('Titolo_ufficiale', 'LIKE','%'. $request->get('Titolo_ufficiale').'%')
+        $category=$request->get('Category');
+        $model="App\\".$category;
+        $vulns=$model::where('Titolo_ufficiale', 'LIKE','%'. $request->get('Titolo_ufficiale').'%')
         ->orwhere('Titolo_ufficiale', 'LIKE',  $request->get('Titolo_ufficiale'))
         ->orwhere('Descrizione', 'LIKE', '%' . $request->get('Titolo_ufficiale'). '%')
         ->orwhere('OWASP', 'LIKE', $request->get('Titolo_ufficiale'))
         ->orwhere('OWASP', 'LIKE','%'. $request->get('Titolo_ufficiale').'%')
         ->orwhere('Titolo_non_ufficiale', 'LIKE', '%' . $request->get('Titolo_ufficiale'). '%')->get();
-        return view('vulns.search',compact('vulns'));
+        return view('vulns.search',compact('vulns','category'));
     }
 
     /**
@@ -77,9 +88,11 @@ class VulnController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {   $vuln=Vuln::findOrFail($id);
-        return view('vulns.edit',compact('vuln'));
+    public function edit(Request $request)
+    {   $category=$request->get('Category');
+        $model="App\\".$category;
+        $vuln=$model::findOrFail($request->get('id'));
+        return view('vulns.edit',compact('vuln','category'));
     }
 
     /**
@@ -91,12 +104,19 @@ class VulnController extends Controller
      */
     public function update(Request $request,$id)
     {
-        $vuln=Vuln::findOrFail($id);
+        $category=$request->get('Category');
+        $model="App\\".$category;
+        $vuln=$model::findOrFail($id);
         $vuln->update($request->all());
         $user_name = Auth::user()->name;
         $vuln->updated_by=$user_name;
         $vuln->save();
-        return view('vulns.show',compact('vuln'));
+        return view('vulns.show',compact('vuln','category'));
+    }
+
+    public function new_category(Request $request){
+        $categories=$request->input('categories');
+        return view ('new_category',compact('categories'));
     }
 
 }

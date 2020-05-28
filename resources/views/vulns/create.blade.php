@@ -5,10 +5,11 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">WebApp Database</div>
+                <div class="panel-heading">{{$category}} Database</div>
                 <div class="panel-body">
                     <form class="form-horizontal" method="post" action="{{route('store')}}">
                         {{csrf_field()}}
+                        <input type='hidden' name='Category' value='{{$category}}'>
                         <div class="form-group">
                             <label class="col-md-4 control-label"> TITOLO UFFICIALE: </label>
                             <div class="col-md-6">

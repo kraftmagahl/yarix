@@ -23,9 +23,15 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index(Request $request)
+    {   
+        $input =$request->get('Category');
         $user =Auth::user();
-        return view('home', compact('user'));
+        return view('home', compact('input'));
+    }
+
+    public function choose(){
+        $categories=['webapp_vuln'];
+        return view('choose',compact('categories'));
     }
 }
