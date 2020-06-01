@@ -32,7 +32,7 @@
                             @foreach($categories as $category)
                                 <input type='hidden' name='categories[]' value='{{$category}}'>
                             @endforeach
-                            <button type="submit" class="btn" href="{{url('/new_category')}}">Create New Repository!</button>
+                            <button type="submit" class="btn" href="{{url('/new_category')}}">Create New Category!</button>
                         </form>
                     </div>
                     </div>

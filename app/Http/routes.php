@@ -30,6 +30,9 @@ Route::get('/create','VulnController@create')->name('create');
 Route::post('/','VulnController@store')->name('store');
 Route::post('/save', function(Request $request){
     $tablenames=$request->get('tablename');
+    if(substr($tablenames, -1)!='s'){
+        $tablenames=$tablenames.'s';
+    }
     $newtableschema = array(
         'tablename' => $tablenames,
         'colnames' => [

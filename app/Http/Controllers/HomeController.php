@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Request as models;
 
 class HomeController extends Controller
 {
@@ -31,7 +32,7 @@ class HomeController extends Controller
     }
 
     public function choose(){
-            $dir = 'C:\Users\Kraftmagahl\Desktop\code\login\app';
+            $dir=base_path().'\app';
             $files = scandir($dir);
             $categories = array();
             $namespace = 'App\\';

@@ -14,8 +14,6 @@
                                 <th>TITOLO UFFICIALE</th>
                                 <th>OWASP</th>
                                 <th>GRAVITA'</th>
-                                <th></th>
-                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
