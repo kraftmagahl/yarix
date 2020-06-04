@@ -13,12 +13,12 @@
                             <input type='hidden' name='categories[]' value='{{$category}}'>
                         @endforeach
                             <label class="col-md-4 control-label"> NOME TABELLA: </label>
-                        <div class="form-group">
-                            <div class="col-md-6">
-                                <input class="form-control"  type="text" name="tablename">
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <input class="form-control"  type="text" name="tablename">
+                                </div>
                             </div>
-                        </div>
-                        
+                            
                         <div class="col-md-6 col-md-offset-4">
                             <button type="submit" class="btn btn-primary" href="/save">SALVA</button>
                         </div>

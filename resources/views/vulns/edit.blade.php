@@ -64,6 +64,12 @@
                                 <textarea rows="10"  class="form-control" name="PoC">{{$vuln->PoC}}</textarea>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">PROOF OF CONCEPT(PoC) ENG: </label>
+                            <div class="col-md-6">
+                                <textarea rows="10"  class="form-control" name="PoC_en">{{$vuln->PoC_en}}</textarea>
+                            </div>
+                        </div>
                         <div class="col-md-6 col-md-offset-4">
                             <button type="submit" class="btn btn-primary">SALVA</button>
                         </div>

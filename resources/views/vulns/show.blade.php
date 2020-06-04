@@ -40,6 +40,13 @@
                                     <th>{{$vuln->PoC}}</th>
                                 </tr>    
                             </table>
+                            <div class="col-md-10">
+                                <form class="form-horizontal" method="get" action='{{route("home")}}'>
+                                    {{csrf_field()}}
+                                    <input type='hidden' name='Category' value='{{$category}}'>
+                                    <button class="btn" type="submit" href="/home">Vai a Home</button>
+                                </form>
+                            </div>
                         </div>
                         <div id="en" class="tab-pane fade">
                             <table class="table">
@@ -49,18 +56,18 @@
                                 </tr>
                                 <tr>
                                     <th>OWASP</th> 
-                                    <th  id="categoria">{{$vuln->OWASP}}</th>
+                                    <th>{{$vuln->OWASP}}</th>
                                 </tr>
                                 <tr>
                                     <th>GRAVITA'</th> 
                                     @if(strcasecmp($vuln->Gravità, "Critico") == 0)
-                                        <th id="gravità">VERY HIGH</th>
+                                        <th>VERY HIGH</th>
                                     @elseif(strcasecmp($vuln->Gravità, "Alto") == 0)
-                                        <th id="gravità">HIGH</th>
+                                        <th>HIGH</th>
                                     @elseif(strcasecmp($vuln->Gravità, "Medio") == 0)
-                                        <th id="gravità">MEDIUM</th>
+                                        <th>MEDIUM</th>
                                     @elseif(strcasecmp($vuln->Gravità, "Basso") == 0)
-                                        <th id="gravità">LOW</th>
+                                        <th>LOW</th>
                                     @endif
                                 </tr>
                                 <tr>
@@ -72,19 +79,19 @@
                                     <th>{{$vuln->Soluzione_en}}</th>
                                 </tr>
                                 <tr>
-                                    <th>PoC</th>
-                                    <th>{{$vuln->PoC}}</th>
+                                    <th>PoC EN</th>
+                                    <th>{{$vuln->PoC_en}}</th>
                                 </tr>    
                             </table>
+                            <div class="col-md-10">
+                                <form class="form-horizontal" method="get" action='{{route("home")}}'>
+                                    {{csrf_field()}}
+                                    <input type='hidden' name='Category' value='{{$category}}'>
+                                    <button class="btn" type="submit" href="/home">Vai a Home</button>
+                                </form>
+                            </div>
                         </div>
-                    </div>
-                    <button class="btn btn-primary"  onclick="copyToClipboard('#gravità','#categoria','#titolo_ufficiale')">Copy</button>
-                    <div class="col-md-10">
-                        <form class="form-horizontal" method="get" action='{{route("home")}}'>
-                                {{csrf_field()}}
-                                <input type='hidden' name='Category' value='{{$category}}'>
-                                <button class="btn" type="submit" href="/home">Vai a Home</button>
-                        </form>
+                        <button class="btn btn-primary"  onclick="copyToClipboard('#gravità','#categoria','#titolo_ufficiale')">Copy</button>
                     </div>
                     <script>
                         function copyToClipboard(element,element1,element2) {

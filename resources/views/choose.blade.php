@@ -27,7 +27,7 @@
                             </div>
                         </form>
                     <div style='float: left; padding: 5px;'>
-                        <form class="form-horizontal" method="post" action='{{route("category")}}'>
+                        <form class="form-horizontal" method="get" action='{{route("category")}}'>
                             {{csrf_field()}}
                             @foreach($categories as $category)
                                 <input type='hidden' name='categories[]' value='{{$category}}'>

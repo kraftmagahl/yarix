@@ -19,9 +19,9 @@
                         <tbody>
                             @foreach($vulns as $vuln)
                             <tr>
-                                <th>{{$vuln->Titolo_ufficiale}}</th>
-                                <th>{{$vuln->OWASP}}</th>
-                                <th>{{$vuln->Gravità}}</th>
+                                <th id="Titolo_ufficiale">{{$vuln->Titolo_ufficiale}}</th>
+                                <th id="category">{{$vuln->OWASP}}</th>
+                                <th id="gravity">{{$vuln->Gravità}}</th>
                                 <th>
                                     <form class="form-horizontal" method="get" action='{{route("show")}}'>
                                         {{csrf_field()}}
@@ -37,10 +37,23 @@
                                         <button class="btn" href="{{url('/edit/'.$vuln->id)}}">Edit</button>
                                     </form>
                                 </th>
+                                <!--<th>
+                                    <button class="btn"  onclick="copyToClipboard( '#gravity','#category','#Titolo_ufficiale')">Copy</button>
+                                </th>-->
                             </tr>
+                            <script>
+                                function copyToClipboard(element,element1,element2) {
+                                    var $temp = $("<input>");
+                                    $("body").append($temp);
+                                    $temp.val($(element).text()+"   "+$(element1).text().substring(0,2)+"  "+$(element2).text()).select();
+                                    document.execCommand("copy");
+                                    $temp.remove();
+                                }
+                            </script>
                             @endforeach
                         </tbody>
                     </table>
+                   
                 </div>
             </div>
         </div>

@@ -12,6 +12,7 @@
 */
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -20,7 +21,7 @@ Route::get('/', function () {
 Route::auth();
 
 Route::get('/choose','HomeController@choose');
-Route::post('/new_category','VulnController@new_category')->name('category');
+Route::get('/new_category','VulnController@new_category')->name('category');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/index','VulnController@index')->name("index");
 Route::get('/search','VulnController@search')->name('search');
@@ -30,45 +31,52 @@ Route::get('/create','VulnController@create')->name('create');
 Route::post('/','VulnController@store')->name('store');
 Route::post('/save', function(Request $request){
     $tablenames=$request->get('tablename');
-    if(substr($tablenames, -1)!='s'){
-        $tablenames=$tablenames.'s';
+    if($tablenames==''){
+        $categories=$request->input('categories');
+        return view('new_category',compact('categories'));
     }
-    $newtableschema = array(
-        'tablename' => $tablenames,
-        'colnames' => [
-            'Titolo_non_ufficiale',
-            'Titolo_ufficiale',
-            'OWASP',
-            'Gravità',
-            'Descrizione',
-            'Soluzione',
-            'PoC',
-            'Descrizione_en',
-            'Soluzione_en',
-            'updated_by'
-
-            ],
-    );
-
-    Schema::create($newtableschema['tablename'], function($table) use($newtableschema){
-        $table->increments('id')->unique();
-        foreach($newtableschema['colnames'] as $col){
-            $table->text($col)->nullable();
+    else{
+        if(substr($tablenames, -1)!='s'){
+            $tablenames=$tablenames.'s';
         }
-        $table->timestamps();
-    });
-    $categories=$request->input('categories');
-    if(substr($tablenames, -1)=='s'){
-        $tablename=rtrim($tablenames,'s');
-    }else{
-        $tablename=$tablenames;
-    }
-    array_push($categories,$tablename);
+        $newtableschema = array(
+            'tablename' => $tablenames,
+            'colnames' => [
+                'Titolo_non_ufficiale',
+                'Titolo_ufficiale',
+                'OWASP',
+                'Gravità',
+                'Descrizione',
+                'Soluzione',
+                'PoC',
+                'Descrizione_en',
+                'Soluzione_en',
+                'updated_by',
+                'PoC_en'
 
-    Artisan::call('make:model', [
-        'name' => $tablename,
-    ]);
-    return view('choose',compact('categories'));
+                ],
+        );
+
+        Schema::create($newtableschema['tablename'], function($table) use($newtableschema){
+            $table->increments('id')->unique();
+            foreach($newtableschema['colnames'] as $col){
+                $table->text($col)->nullable();
+            }
+            $table->timestamps();
+        });
+        $categories=$request->input('categories');
+        if(substr($tablenames, -1)=='s'){
+            $tablename=rtrim($tablenames,'s');
+        }else{
+            $tablename=$tablenames;
+        }
+        array_push($categories,$tablename);
+
+        Artisan::call('make:model', [
+            'name' => $tablename,
+        ]);
+        return view('choose',compact('categories'));
+    }
 })->name('save');
 
 

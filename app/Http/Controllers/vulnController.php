@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Artisan;
 
 
 class VulnController extends Controller
@@ -44,7 +45,18 @@ class VulnController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   $category=$request->get('Category');
+    {   $this->validate($request,[
+            'Titolo_ufficiale'=>'required',
+            'OWASP'=>'required',
+            'Gravità'=>'required',
+            'Descrizione'=>'required|not_in:'."Enter Description...",
+            'Soluzione'=>'not_in:'."Enter Solution...",
+            'Descrizione_en'=>'not_in:'."Enter Description...",
+            'Soluzione_en'=>'not_in:'."Enter Solution...",
+            'PoC'=>'not_in:'."Enter Proof of Concept(PoC)...",
+            'PoC_en'=>'not_in:'."Enter Proof of Concept(PoC)..."
+        ]);
+        $category=$request->get('Category');
         $model="App\\".$category;
         $vuln = $model::create();
         $user_name = Auth::user()->name;
@@ -59,6 +71,7 @@ class VulnController extends Controller
             'PoC',
             'Descrizione_en',
             'Soluzione_en',
+            'PoC_en',
             'updated_by'
 
             ]));
@@ -71,6 +84,7 @@ class VulnController extends Controller
             'PoC'=>$request->get('PoC'),
             'Descrizione_en'=>$request->get('Descrizione_en'),
             'Soluzione_en'=>$request->get('Soluzione_en'),
+            'PoC_en'=>$request->get('PoC_en'),
             'updated_by'=>$user_name
         ])->save();
         return view('vulns.show',compact('vuln','category'));
@@ -128,7 +142,11 @@ class VulnController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request,$id)
-    {
+    {    $this->validate($request,[
+            'Titolo_ufficiale'=>'required',
+            'OWASP'=>'required',
+            'Descrizione'=>'required'
+        ]);
         $category=$request->get('Category');
         $model="App\\".$category;
         $vuln=$model::findOrFail($id);
@@ -144,6 +162,7 @@ class VulnController extends Controller
             'PoC',
             'Descrizione_en',
             'Soluzione_en',
+            'PoC_en',
             'updated_by'
 
             ]));
@@ -156,6 +175,7 @@ class VulnController extends Controller
             'PoC'=>$request->get('PoC'),
             'Descrizione_en'=>$request->get('Descrizione_en'),
             'Soluzione_en'=>$request->get('Soluzione_en'),
+            'PoC_en'=>$request->get('PoC_en'),
             'updated_by'=>$user_name
         ])->save();
         return view('vulns.show',compact('vuln','category'));
@@ -171,5 +191,6 @@ class VulnController extends Controller
         $categories=$request->input('categories');
         return view ('new_category',compact('categories'));
     }
+
 
 }

@@ -108,6 +108,12 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'OWASP'=>'OWASP',
+        'PoC'=>'PoC',
+        'PoC_en'=>'PoC en',
+        'Soluzione_en'=>'English Solution',
+        'Descrizione_en'=>'English Description',
+    ],
 
 ];
