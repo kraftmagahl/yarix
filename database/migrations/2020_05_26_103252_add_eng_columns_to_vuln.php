@@ -11,7 +11,7 @@ class AddEngColumnsToVuln extends Migration
      * @return void
      */
     public function up()
-    { Schema::table('vulns', function (Blueprint $table) {
+    { Schema::table('webapp_vulns', function (Blueprint $table) {
         $table->string('Descrizione_en')->nullable();
         $table->string('Soluzione_en')->nullable();
     });

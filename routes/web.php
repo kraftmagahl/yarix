@@ -1,33 +1,27 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| This file is where you may define all of the routes that are handled
+| by your application. Just tell Laravel the URIs it should respond
+| to using a Closure or controller method. Build something great!
+|
+*/
 Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/json',array('middleware' => 'cors', 'uses' => 'VulnController@json'));
-/*Route::group([
-    'prefix'     => '/json',
-    'middleware' => 'cors'
-], function(Request $request) {
-    $titolo=$request->get('titolo');
-        return response($titolo,200)->header('Content-Type','text/plain');
-});*/
+
 
 Route::auth();
+Route::get('/logout', 'Auth\LoginController@logout');
 
 Route::get('/choose','HomeController@choose');
 Route::get('/new_category','VulnController@new_category')->name('category');
@@ -38,6 +32,7 @@ Route::get('/show','VulnController@show')->name('show');
 Route::get('/edit','VulnController@edit')->name('edit');
 Route::get('/create','VulnController@create')->name('create');
 Route::post('/','VulnController@store')->name('store');
+
 Route::post('/save', function(Request $request){
     $tablenames=$request->get('tablename');
     if($tablenames==''){

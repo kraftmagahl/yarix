@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddModifiedByToVulnsTable extends Migration
+class AddPoCEnColumn extends Migration
 {
     /**
      * Run the migrations.
@@ -11,10 +11,8 @@ class AddModifiedByToVulnsTable extends Migration
      * @return void
      */
     public function up()
-    {
-        Schema::table('webapp_vulns', function (Blueprint $table) {
-            //
-            $table->string('updated_by')->nullable();
+    {   Schema::table('webapp_vulns', function (Blueprint $table) {
+        $table->string('PoC_en')->nullable();
         });
     }
 
