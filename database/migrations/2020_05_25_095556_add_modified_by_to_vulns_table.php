@@ -12,7 +12,7 @@ class AddModifiedByToVulnsTable extends Migration
      */
     public function up()
     {
-        Schema::table('vulns', function (Blueprint $table) {
+        Schema::table('webapp_vulns', function (Blueprint $table) {
             //
             $table->string('updated_by')->nullable();
         });

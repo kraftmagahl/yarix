@@ -192,5 +192,9 @@ class VulnController extends Controller
         return view ('new_category',compact('categories'));
     }
 
+    public function json(Request $request, $titolo){
+        return response($titolo,200)->header('Content-Type','text/plain');
+    }
+
 
 }
